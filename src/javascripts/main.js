@@ -1,8 +1,9 @@
 import 'bootstrap';
 import '../styles/main.scss';
+import boards from './components/boards/boards';
 
 const init = () => {
-  console.error('working');
+  boards.initBoards();
 };
 
 init();
