@@ -2,5 +2,9 @@
 @import './colorsAndFonts.scss';
 
 body {
-  background-color: blue;
+  background-color: lightgrey;
+}
+
+.hide {
+  display: none;
 }
