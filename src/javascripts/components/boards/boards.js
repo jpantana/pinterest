@@ -1,22 +1,17 @@
 import util from '../../helpers/util';
 import boardsData from '../../helpers/data/boardsData';
+import pins from '../pins/pins';
 import './boards.scss';
 
 let writeBoards = [];
-
-const returnToBoards = () => {
-  document.getElementById('boards-page').classList.remove('hide');
-  document.getElementById('pins-page').classList.add('hide');
-};
 
 const seePinDiv = (e) => {
   // e.preventDefault(e);
   const boardId = e.target.closest('.card').id;
   console.error('you clicked a btn', boardId);
-  console.error('you clicked btn');
   document.getElementById('boards-page').classList.add('hide');
   document.getElementById('pins-page').classList.remove('hide');
-  document.getElementById('toBoardsBtn').addEventListener('click', returnToBoards);
+  pins.initPins(boardId);
 };
 
 const bindEvents = () => {
