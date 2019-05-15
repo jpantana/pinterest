@@ -5,11 +5,6 @@ import './boards.scss';
 
 let writeBoards = [];
 
-// const returnToBoards = () => {
-//   document.getElementById('boards-page').classList.remove('hide');
-//   document.getElementById('pins-page').classList.add('hide');
-// };
-
 const seePinDiv = (e) => {
   // e.preventDefault(e);
   const boardId = e.target.closest('.card').id;
@@ -17,7 +12,6 @@ const seePinDiv = (e) => {
   document.getElementById('boards-page').classList.add('hide');
   document.getElementById('pins-page').classList.remove('hide');
   pins.initPins(boardId);
-  // document.getElementById('toBoardsBtn').addEventListener('click', returnToBoards);
 };
 
 const bindEvents = () => {
