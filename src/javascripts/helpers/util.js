@@ -1,7 +1,5 @@
-import $ from '../../../node_modules/jquery';
-
 const printToDom = (divId, textToPrint) => {
-  const selectedDiv = $(divId)[0];
+  const selectedDiv = document.getElementById(divId);
   selectedDiv.innerHTML = textToPrint;
 };
 
