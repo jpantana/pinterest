@@ -1,49 +1,46 @@
 import util from '../../helpers/util';
-import boardsData from '../../helpers/data/boardsData';
+import boardData from '../../helpers/data/boardsData';
 import pins from '../pins/pins';
-import './boards.scss';
-
-let writeBoards = [];
+import pinsData from '../../helpers/data/pinsData';
 
 const seePinDiv = (e) => {
-  // e.preventDefault(e);
   const boardId = e.target.closest('.card').id;
-  console.error('you clicked a btn', boardId);
+  console.error('you clicked a button!', boardId);
   document.getElementById('boards-page').classList.add('hide');
   document.getElementById('pins-page').classList.remove('hide');
   pins.initPins(boardId);
 };
 
 const bindEvents = () => {
-  const allBtns = document.getElementsByClassName('see-pins');
-  for (let i = 0; i < allBtns.length; i += 1) {
-    allBtns[i].addEventListener('click', seePinDiv);
+  const allButtons = document.getElementsByClassName('see-pins');
+  for (let i = 0; i < allButtons.length; i += 1) {
+    allButtons[i].addEventListener('click', seePinDiv);
   }
 };
 
-const boardDomBuilder = () => {
+const writeBoards = (boards) => {
   let domString = '';
-  writeBoards.forEach((board) => {
-    domString += `
-    <div class="col-3">
-      <div id="${board.id}" class="mt-2 p-2 card border-danger justify-content-center" style="height: 100px;">
-        <p class="row text-center m-auto">${board.name}</p>
-        <button class="btn btn-success w-25 m-auto see-pins">Pins</button>
-      </div>
-    </div>`;
+  boards.forEach((board) => {
+    domString += '<div class="col-3">';
+    domString += `<div id='${board.id}' class="card p-2">`;
+    domString += '<div class="card-body">';
+    domString += `<h5 class="card-title">${board.name}</h5>`;
+    domString += `<button class="btn btn-warning see-pins">${board.pins.length} Pins</button>`;
+    domString += '</div>';
+    domString += '</div>';
+    domString += '</div>';
   });
   util.printToDom('user-boards', domString);
   bindEvents();
 };
 
 const initBoards = () => {
-  boardsData.loadBoards()
-    .then((resp) => {
-      const dataResults = resp.data.boards;
-      writeBoards = dataResults;
-      boardDomBuilder();
+  boardData.loadBoards()
+    .then(resp => pinsData.getPinsForEachBoard(resp.data.boards))
+    .then((boardsWithPins) => {
+      writeBoards(boardsWithPins);
     })
-    .catch(err => console.error(err));
+    .catch(err => console.error('error from initBoards requests', err));
 };
 
-export default { initBoards, boardDomBuilder };
+export default { initBoards };

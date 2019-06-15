@@ -1,4 +1,3 @@
-// import util from '../../helpers/util';
 import pinsData from '../../helpers/data/pinsData';
 import util from '../../helpers/util';
 
@@ -12,7 +11,7 @@ const bindEvents = () => {
 const writePins = (pins) => {
   let domString = '';
   pins.forEach((pin) => {
-    domString += `<img class="w-25 h-25 m-2" src="${pin.imageUrl}" alt="pin image">`;
+    domString += `<img src="${pin.imageUrl}" alt="pin image">`;
   });
   util.printToDom('pins-on-board', domString);
 };
@@ -21,10 +20,9 @@ const initPins = (boardId) => {
   bindEvents();
   pinsData.loadPinsForBoard(boardId)
     .then((pins) => {
-      console.error('all pins', pins);
       writePins(pins);
     })
     .catch(err => console.error(err));
 };
 
-export default { initPins, bindEvents };
+export default { initPins };
