@@ -4,7 +4,7 @@
 A website to that mimics Pinterest (kind of).
 
 ## Screenshots
-![Image of the pinterest website.(https://raw.githubusercontent.com/jpantana/pinterest/numPins/screenshots/Screen%20Shot%202019-06-15%20at%2010.19.54%20AM.png "screenshot of pinterest site.")
+![Image of the pinterest website.](https://raw.githubusercontent.com/jpantana/pinterest/numPins/screenshots/Screen%20Shot%202019-06-15%20at%2010.19.54%20AM.png "screenshot of pinterest site.")
 
 ## Installation Instructions
 * Clone down this repo
